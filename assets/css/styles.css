@@ -1,0 +1,144 @@
+/* ─── GTA V Character Gallery – Custom Styles ─── */
+
+:root {
+    --bs-body-bg: #121212;
+    --bs-body-color: #e0e0e0;
+    --accent: #f5c518;
+    --card-bg: #1e1e1e;
+}
+
+body {
+    background-color: var(--bs-body-bg);
+    color: var(--bs-body-color);
+}
+
+/* Navbar */
+.navbar-brand {
+    color: var(--accent) !important;
+}
+
+/* Legal notice */
+.legal-notice {
+    background: rgba(255, 193, 7, 0.1);
+    border: 1px solid rgba(255, 193, 7, 0.4);
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+    font-size: 0.85rem;
+    color: #ffc107;
+    margin-bottom: 1.5rem;
+}
+
+/* Photo card grid */
+.photo-card {
+    background: var(--card-bg);
+    border: 1px solid #2a2a2a;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.photo-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+.photo-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    background: #2a2a2a;
+}
+
+.photo-card .card-body {
+    padding: 0.6rem 0.8rem;
+}
+
+.photo-card .character-name {
+    font-size: 0.8rem;
+    color: #aaa;
+}
+
+/* Broken image fallback */
+img.broken {
+    display: block;
+    width: 100%;
+    height: 220px;
+    background: #2a2a2a url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="%23555"><text x="8" y="40" font-size="36">🖼</text></svg>') center center no-repeat;
+    object-fit: none;
+}
+
+/* Status badges for bulk-add */
+.badge-ok {
+    background: #198754;
+}
+
+.badge-invalid {
+    background: #dc3545;
+}
+
+.badge-dup {
+    background: #fd7e14;
+}
+
+.badge-exists {
+    background: #6c757d;
+}
+
+/* Admin panel */
+.admin-sidebar {
+    min-height: calc(100vh - 56px);
+    background: #1a1a2e;
+}
+
+.admin-sidebar .nav-link {
+    color: #ccc;
+    padding: 0.5rem 1rem;
+}
+
+.admin-sidebar .nav-link:hover,
+.admin-sidebar .nav-link.active {
+    color: var(--accent);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* Donate button pulse */
+.btn-warning {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 193, 7, 0.4);
+    }
+
+    50% {
+        box-shadow: 0 0 0 8px rgba(255, 193, 7, 0);
+    }
+}
+
+/* Search highlight */
+.search-result-item {
+    border-left: 3px solid var(--accent);
+    padding-left: 1rem;
+    margin-bottom: 0.8rem;
+}
+
+/* Form tables (bulk add) */
+.bulk-table input,
+.bulk-table textarea {
+    font-size: 0.8rem;
+}
+
+.bulk-table td {
+    vertical-align: middle;
+}
+
+/* Responsive tweaks */
+@media (max-width: 576px) {
+    .photo-card img {
+        height: 160px;
+    }
+}
