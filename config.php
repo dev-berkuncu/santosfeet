@@ -3,16 +3,22 @@
  * Application Configuration
  */
 
-// Database
+// ── Debug (set to false after fixing the issue) ─────────────────────
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
+error_reporting(E_ALL);
+
+// ── Database ────────────────────────────────────────────────────────
+// TODO: Update these with your hosting panel's MySQL credentials
 define('DB_HOST', 'localhost');
-define('DB_NAME', 'wikifeet_gta');
-define('DB_USER', 'root');
-define('DB_PASS', '');        // XAMPP default; Laragon may also be empty
+define('DB_NAME', 'wikifeet_gta');           // TODO: your DB name from hosting panel
+define('DB_USER', 'root');                   // TODO: your DB user from hosting panel
+define('DB_PASS', '');                       // TODO: your DB password from hosting panel
 define('DB_CHARSET', 'utf8mb4');
 
 // Site
 define('SITE_TITLE', 'GTA V Character Gallery');
-define('SITE_URL', 'http://localhost/wikifeet');   // no trailing slash
+define('SITE_URL', 'https://santosfeet.com');   // no trailing slash
 define('ITEMS_PER_PAGE', 24);
 
 // Donate link (PayPal, Ko-fi, etc.)

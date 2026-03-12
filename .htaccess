@@ -1,0 +1,25 @@
+# Enable mod_rewrite
+RewriteEngine On
+
+# Force HTTPS
+RewriteCond %{HTTPS} !=on
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# PHP error logging (remove after debugging)
+php_flag display_errors on
+php_value error_reporting 32767
+
+# Default charset
+AddDefaultCharset UTF-8
+
+# Deny access to sensitive files
+<FilesMatch "\.(sql|md|gitignore)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Deny access to database directory
+<IfModule mod_rewrite.c>
+    RewriteRule ^database/ - [F,L]
+    RewriteRule ^lib/ - [F,L]
+</IfModule>
