@@ -1,6 +1,6 @@
 <?php
 /**
- * Character page – shows all photos for a character by slug
+ * Karakter sayfası – slug'a göre tüm fotoğrafları gösterir
  */
 require_once __DIR__ . '/lib/db.php';
 require_once __DIR__ . '/lib/helpers.php';
@@ -15,14 +15,14 @@ $stmt->execute([$slug]);
 $character = $stmt->fetch();
 if (!$character) {
     http_response_code(404);
-    $pageTitle = 'Character Not Found';
+    $pageTitle = 'Karakter Bulunamadı';
     include __DIR__ . '/partials/header.php';
-    echo '<div class="text-center py-5"><h2>Character not found.</h2><a href="' . SITE_URL . '/" class="btn btn-outline-warning mt-3">Go Home</a></div>';
+    echo '<div class="text-center py-5"><h2>Karakter bulunamadı.</h2><a href="' . SITE_URL . '/" class="btn btn-outline-warning mt-3">Anasayfaya Dön</a></div>';
     include __DIR__ . '/partials/footer.php';
     exit;
 }
 
-// Pagination
+// Sayfalama
 $page = max(1, (int)($_GET['page'] ?? 1));
 $countStmt = $pdo->prepare("SELECT COUNT(*) FROM photos WHERE character_id = ? AND is_published = 1");
 $countStmt->execute([$character['id']]);
@@ -42,17 +42,17 @@ $stmt->execute();
 $photos = $stmt->fetchAll();
 
 $pageTitle = e($character['name']) . ' – ' . SITE_TITLE;
-$metaDesc = 'Photos of ' . $character['name'] . ' from GTA V.';
+$metaDesc = $character['name'] . ' fotoğrafları – ' . SITE_TITLE;
 include __DIR__ . '/partials/header.php';
 ?>
 
 <h1 class="h3 mb-1"><?= e($character['name']) ?></h1>
-<p class="text-muted mb-4"><?= $total ?> photo<?= $total !== 1 ? 's' : '' ?></p>
+<p class="text-muted mb-4"><?= $total ?> fotoğraf</p>
 
 <?php if (empty($photos)): ?>
     <div class="text-center text-muted py-5">
         <i class="bi bi-image" style="font-size:3rem"></i>
-        <p class="mt-2">No photos for this character yet.</p>
+        <p class="mt-2">Bu karakter için henüz fotoğraf eklenmemiş.</p>
     </div>
 <?php else: ?>
     <div class="row g-3">

@@ -17,7 +17,7 @@ define('DB_PASS', '');                       // TODO: your DB password from host
 define('DB_CHARSET', 'utf8mb4');
 
 // Site
-define('SITE_TITLE', 'GTA V Character Gallery');
+define('SITE_TITLE', 'Santosfeet');
 define('SITE_URL', 'https://santosfeet.com');   // no trailing slash
 define('ITEMS_PER_PAGE', 24);
 

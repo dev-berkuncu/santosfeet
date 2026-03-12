@@ -1,6 +1,6 @@
 <?php
 /**
- * Search page – find characters + show photos
+ * Arama sayfası – karakter ara + fotoğrafları göster
  */
 require_once __DIR__ . '/lib/db.php';
 require_once __DIR__ . '/lib/helpers.php';
@@ -8,46 +8,46 @@ require_once __DIR__ . '/lib/helpers.php';
 $q = trim($_GET['q'] ?? '');
 $pdo = get_pdo();
 
-$pageTitle = 'Search – ' . SITE_TITLE;
+$pageTitle = 'Arama – ' . SITE_TITLE;
 include __DIR__ . '/partials/header.php';
 
 if ($q === ''):
 ?>
-    <h2 class="h4 mb-3">Search Characters</h2>
-    <p class="text-muted">Enter a character name in the search bar above.</p>
+    <h2 class="h4 mb-3">Karakter Ara</h2>
+    <p class="text-muted">Yukarıdaki arama çubuğuna bir karakter adı yazın.</p>
 <?php
 else:
-    // 1) Exact match on name or slug
+    // 1) İsim veya slug ile tam eşleşme
     $stmt = $pdo->prepare("SELECT * FROM characters WHERE name = ? OR slug = ? LIMIT 1");
     $stmt->execute([$q, $q]);
     $exact = $stmt->fetch();
 
     if ($exact) {
-        // Redirect to character page
+        // Karakter sayfasına yönlendir
         header('Location: ' . SITE_URL . '/character.php?slug=' . urlencode($exact['slug']));
         exit;
     }
 
-    // 2) LIKE search
+    // 2) LIKE araması
     $stmt = $pdo->prepare("SELECT * FROM characters WHERE name LIKE ? OR slug LIKE ? ORDER BY name");
     $stmt->execute(['%' . $q . '%', '%' . $q . '%']);
     $results = $stmt->fetchAll();
 
     if (count($results) === 1) {
-        // Single result → redirect
+        // Tek sonuç → yönlendir
         header('Location: ' . SITE_URL . '/character.php?slug=' . urlencode($results[0]['slug']));
         exit;
     }
 ?>
-    <h2 class="h4 mb-3">Search results for "<?= e($q) ?>"</h2>
+    <h2 class="h4 mb-3">"<?= e($q) ?>" için arama sonuçları</h2>
 
     <?php if (empty($results)): ?>
         <div class="text-center text-muted py-5">
             <i class="bi bi-search" style="font-size:3rem"></i>
-            <p class="mt-2">No characters found matching "<?= e($q) ?>".</p>
+            <p class="mt-2">"<?= e($q) ?>" ile eşleşen karakter bulunamadı.</p>
         </div>
     <?php else: ?>
-        <p class="text-muted"><?= count($results) ?> character(s) found:</p>
+        <p class="text-muted"><?= count($results) ?> karakter bulundu:</p>
         <?php foreach ($results as $char): ?>
             <div class="search-result-item">
                 <a href="<?= SITE_URL ?>/character.php?slug=<?= e($char['slug']) ?>" class="text-warning text-decoration-none fw-bold">
@@ -58,7 +58,7 @@ else:
                     $cntStmt->execute([$char['id']]);
                     $cnt = $cntStmt->fetchColumn();
                 ?>
-                <small class="text-muted ms-2">(<?= $cnt ?> photos)</small>
+                <small class="text-muted ms-2">(<?= $cnt ?> fotoğraf)</small>
             </div>
         <?php endforeach; ?>
     <?php endif; ?>

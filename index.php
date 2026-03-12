@@ -1,13 +1,13 @@
 <?php
 /**
- * Homepage – Legal notice + photo grid
+ * Anasayfa – Uyarı + fotoğraf galeri
  */
 require_once __DIR__ . '/lib/db.php';
 require_once __DIR__ . '/lib/helpers.php';
 
 $pdo = get_pdo();
 
-// Pagination
+// Sayfalama
 $page = max(1, (int)($_GET['page'] ?? 1));
 $countStmt = $pdo->query("SELECT COUNT(*) FROM photos WHERE is_published = 1");
 $total = (int)$countStmt->fetchColumn();
@@ -26,22 +26,22 @@ $stmt->bindValue(':offset', $pg['offset'], PDO::PARAM_INT);
 $stmt->execute();
 $photos = $stmt->fetchAll();
 
-$pageTitle = SITE_TITLE . ' – Home';
+$pageTitle = SITE_TITLE . ' – Anasayfa';
 include __DIR__ . '/partials/header.php';
 ?>
 
-<!-- Legal Notice -->
+<!-- Uyarı -->
 <div class="legal-notice">
-    <strong>⚠️ 18+ Content Warning</strong><br>
-    This is an <strong>unofficial fan site</strong>. All characters are <strong>fictional</strong> and belong to <strong>Rockstar Games</strong>.
-    No real persons are depicted. By continuing, you confirm you are 18 years or older.
+    <strong>⚠️ 18+ İçerik Uyarısı</strong><br>
+    Bu site <strong>Santos RP sunucusu</strong> için oluşturulmuş bir <strong>IC (In-Character)</strong> sitedir.
+    Tüm karakterler tamamen <strong>kurgusaldır</strong>. Devam ederek 18 yaşından büyük olduğunuzu onaylıyorsunuz.
 </div>
 
-<!-- Photo Grid -->
+<!-- Fotoğraf Galerisi -->
 <?php if (empty($photos)): ?>
     <div class="text-center text-muted py-5">
         <i class="bi bi-image" style="font-size:3rem"></i>
-        <p class="mt-2">No photos yet.</p>
+        <p class="mt-2">Henüz fotoğraf eklenmemiş.</p>
     </div>
 <?php else: ?>
     <div class="row g-3">

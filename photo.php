@@ -1,6 +1,6 @@
 <?php
 /**
- * Single photo detail page
+ * Tekli fotoğraf detay sayfası
  */
 require_once __DIR__ . '/lib/db.php';
 require_once __DIR__ . '/lib/helpers.php';
@@ -20,9 +20,9 @@ $photo = $stmt->fetch();
 
 if (!$photo) {
     http_response_code(404);
-    $pageTitle = 'Photo Not Found';
+    $pageTitle = 'Fotoğraf Bulunamadı';
     include __DIR__ . '/partials/header.php';
-    echo '<div class="text-center py-5"><h2>Photo not found.</h2><a href="' . SITE_URL . '/" class="btn btn-outline-warning mt-3">Go Home</a></div>';
+    echo '<div class="text-center py-5"><h2>Fotoğraf bulunamadı.</h2><a href="' . SITE_URL . '/" class="btn btn-outline-warning mt-3">Anasayfaya Dön</a></div>';
     include __DIR__ . '/partials/footer.php';
     exit;
 }
@@ -33,9 +33,9 @@ include __DIR__ . '/partials/header.php';
 
 <nav aria-label="breadcrumb" class="mb-3">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="<?= SITE_URL ?>/" class="text-warning">Home</a></li>
+        <li class="breadcrumb-item"><a href="<?= SITE_URL ?>/" class="text-warning">Anasayfa</a></li>
         <li class="breadcrumb-item"><a href="<?= SITE_URL ?>/character.php?slug=<?= e($photo['character_slug']) ?>" class="text-warning"><?= e($photo['character_name']) ?></a></li>
-        <li class="breadcrumb-item active text-muted"><?= e($photo['caption'] ?: 'Photo #' . $photo['id']) ?></li>
+        <li class="breadcrumb-item active text-muted"><?= e($photo['caption'] ?: 'Fotoğraf #' . $photo['id']) ?></li>
     </ol>
 </nav>
 
@@ -56,11 +56,11 @@ include __DIR__ . '/partials/header.php';
                 <?php endif; ?>
                 <?php if ($photo['source_url']): ?>
                     <a href="<?= e($photo['source_url']) ?>" target="_blank" rel="noopener" class="btn btn-outline-light btn-sm mb-2">
-                        <i class="bi bi-box-arrow-up-right me-1"></i>Source
+                        <i class="bi bi-box-arrow-up-right me-1"></i>Kaynak
                     </a>
                 <?php endif; ?>
                 <hr class="border-secondary">
-                <small class="text-muted">Added: <?= date('M d, Y', strtotime($photo['created_at'])) ?></small>
+                <small class="text-muted">Eklenme: <?= date('d.m.Y', strtotime($photo['created_at'])) ?></small>
             </div>
         </div>
     </div>
