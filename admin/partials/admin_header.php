@@ -2,10 +2,10 @@
 /**
  * Admin header partial - includes sidebar
  */
-require_once __DIR__ . '/../config.php';
-require_once __DIR__ . '/../lib/helpers.php';
-require_once __DIR__ . '/../lib/auth.php';
-require_once __DIR__ . '/../lib/csrf.php';
+require_once __DIR__ . '/../../config.php';
+require_once __DIR__ . '/../../lib/helpers.php';
+require_once __DIR__ . '/../../lib/auth.php';
+require_once __DIR__ . '/../../lib/csrf.php';
 require_login();
 ?>
 <!DOCTYPE html>
