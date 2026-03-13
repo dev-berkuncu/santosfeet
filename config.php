@@ -11,9 +11,9 @@ error_reporting(E_ALL);
 // ── Database ────────────────────────────────────────────────────────
 // TODO: Update these with your hosting panel's MySQL credentials
 define('DB_HOST', 'localhost');
-define('DB_NAME', 'wikifeet_gta');           // TODO: your DB name from hosting panel
-define('DB_USER', 'root');                   // TODO: your DB user from hosting panel
-define('DB_PASS', '');                       // TODO: your DB password from hosting panel
+define('DB_NAME', 'u418317451_santosfeet');           // TODO: your DB name from hosting panel
+define('DB_USER', 'u418317451_santosfeet');                   // TODO: your DB user from hosting panel
+define('DB_PASS', 'FugVRkbhUF9Lyqx');                       // TODO: your DB password from hosting panel
 define('DB_CHARSET', 'utf8mb4');
 
 // Site
