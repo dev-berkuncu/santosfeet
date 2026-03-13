@@ -3,7 +3,9 @@
  * Admin – Photos CRUD + Bulk Add (Step 1 / Step 2 / Step 3)
  */
 require_once __DIR__ . '/../lib/db.php';
+require_once __DIR__ . '/../lib/auth.php';
 require_once __DIR__ . '/../lib/helpers.php';
+require_once __DIR__ . '/../lib/csrf.php';
 
 $pdo = get_pdo();
 $msg = '';

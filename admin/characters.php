@@ -3,7 +3,9 @@
  * Admin – Characters CRUD + Quick Add
  */
 require_once __DIR__ . '/../lib/db.php';
+require_once __DIR__ . '/../lib/auth.php';
 require_once __DIR__ . '/../lib/helpers.php';
+require_once __DIR__ . '/../lib/csrf.php';
 
 $pdo = get_pdo();
 $msg = '';
